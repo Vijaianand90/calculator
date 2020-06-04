@@ -60,7 +60,7 @@ class Control extends Component {
               <Button onClick={this.props.onpointControlClick}>.</Button>
             </Col>
             <Col>
-              <Button onClick={this.props.on0ControlClick}>0</Button>
+              <Button id="zeroButton" onClick={this.props.on0ControlClick}>0</Button>
             </Col>
             <Col>
               <Button onClick={this.props.onequalControlClick}>=</Button>

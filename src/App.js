@@ -20,6 +20,83 @@ class App extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    window.addEventListener("load", this.load);
+    window.addEventListener("keypress", this.handleKeyPress);
+  }
+
+  load = () => {
+    this.handle0ControlClick();
+  };
+
+  handleKeyPress = (event) => {
+    switch (event.key) {
+      case "0":
+        this.handle0ControlClick();
+        break;
+
+      case "1":
+        this.handle1ControlClick();
+        break;
+
+      case "2":
+        this.handle2ControlClick();
+        break;
+
+      case "3":
+        this.handle3ControlClick();
+        break;
+
+      case "4":
+        this.handle4ControlClick();
+        break;
+
+      case "5":
+        this.handle5ControlClick();
+        break;
+
+      case "6":
+        this.handle6ControlClick();
+        break;
+
+      case "7":
+        this.handle7ControlClick();
+        break;
+
+      case "8":
+        this.handle8ControlClick();
+        break;
+
+      case "9":
+        this.handle9ControlClick();
+        break;
+
+      case ".":
+        this.handlepointControlClick();
+        break;
+
+      case "+":
+        this.handleplusControlClick();
+        break;
+
+      case "-":
+        this.handleminusControlClick();
+        break;
+
+      case "*":
+        this.handlemultiplyControlClick();
+        break;
+
+      case "/":
+        this.handledivisionControlClick();
+        break;
+
+      case "=":
+        this.handleequalControlClick();
+        break;
+    }
+  };
+
   handle0ControlClick = () => {
     this.setResultValue({ value: "0" });
   };
@@ -149,10 +226,7 @@ class App extends Component {
     let expression = this.state.expression + result + args.operator;
     if (args.operator === "/" || args.operator === "*") {
       expression =
-        "(" +
-        expression.substr(0, expression.length - 1) +
-        ")" +
-        args.operator;
+        "(" + expression.substr(0, expression.length - 1) + ")" + args.operator;
     }
     return expression;
   }
@@ -164,14 +238,12 @@ class App extends Component {
     let resultLen = this.state.result.length;
     if (resultLen > 0) {
       leadingZero = this.state.result.substr(0, 1);
-    }
-    else {
+    } else {
       result = this.state.result;
     }
     if (leadingZero === "0" && resultLen > 1) {
       result = this.state.result.substr(1, resultLen);
-    }
-    else {
+    } else {
       result = this.state.result;
     }
     return result;
@@ -179,7 +251,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="calcContainer">
         <Container>
           <Row>
             <Col>
@@ -189,7 +261,6 @@ class App extends Component {
           <br />
           <Row>
             <Col>
-            
               <ResultPane result={this.state.result} />
             </Col>
           </Row>
